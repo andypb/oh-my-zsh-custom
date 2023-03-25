@@ -70,7 +70,7 @@ ZSH_THEME="abirchall"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gnu-utils docker)
+plugins=(git gnu-utils docker kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,3 +110,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/abirchall/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/abirchall/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/abirchall/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/abirchall/google-cloud-sdk/completion.zsh.inc'; fi
