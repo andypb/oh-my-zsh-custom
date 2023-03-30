@@ -13,6 +13,9 @@ alias cdp='cd -P'
 export PAGER="less"
 export LESS="-FRSMX"
 
+# MANPATH from old .zshrc. Obsolete/outdated now?
+#export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
