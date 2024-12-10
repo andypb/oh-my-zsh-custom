@@ -1,3 +1,4 @@
+# Note: this will run automatically as part of the shell init configuration, no matter which profile is set
 alias glogall='git log --oneline --decorate --graph --all'
 alias gloga="git log -50 --all --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
 alias glogab="git log -50 --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
