@@ -25,6 +25,7 @@ alias h='helm'
 # list open ports
 alias lsports='sudo lsof -iTCP -sTCP:LISTEN -n -P | awk '\''NR>1 {print $9, $1, $2}'\'' | sed '\''s/.*://'\'' | while read port process pid; do echo "Port $port: $(ps -p $pid -o command= | sed '\''s/^-//'\'') (PID: $pid)"; done | sort -n'
 alias curltime="curl -o /dev/null -s -w 'Total time: %{time_total}s\n'"
+alias yqxml='yq -p xml -o xml'
 
 ## pager
 export PAGER="less"
