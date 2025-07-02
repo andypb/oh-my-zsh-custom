@@ -49,6 +49,9 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 # Added for autocompletion for docker cli
 autoload -Uz compinit; compinit
 
+# Buildpack autocompletion
+. $(pack completion --shell zsh)
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
