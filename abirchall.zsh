@@ -1,10 +1,11 @@
 # Note: this will run automatically as part of the shell init configuration, no matter which profile is set
 alias glogall='git log --oneline --decorate --graph --all'
-alias gloga="git log -50 --all --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
-alias glogab="git log -50 --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
-alias glogao="git log -50 --pretty='format:%C(yellow)%h %C(bold blue)%d %C(green)%ad %C(cyan)%an %Creset%s' --date=short"
+alias gloga="git log -30 --all --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
+alias glogab="git log -30 --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
+alias glogao="git log -30 --pretty='format:%C(yellow)%h %C(bold blue)%d %C(green)%ad %C(cyan)%an %Creset%s' --date=short"
 alias glap='git pull --all --prune'
 alias gla='git pull --all'
+alias gstuno='git status -uno'
 alias ls='ls --color'
 alias lla='ls -lha'
 alias emacsnw='emacs -nw'
@@ -28,6 +29,12 @@ alias curltime="curl -o /dev/null -s -w 'Total time: %{time_total}s\n'"
 alias yqxml='yq -p xml -o xml'
 # Make sudo work with aliases
 alias sudo='sudo '
+alias dc='docker compose'
+alias manbsd='man -M /usr/share/man'
+alias mangnu='man -M /opt/homebrew/share/man'
+alias lsb='/bin/ls --color'
+alias chmodb='/bin/chmod'
+alias chownb='/bin/chown'
 
 ## pager
 export PAGER="less"
@@ -36,12 +43,23 @@ export LESS="-FRSMX"
 # Added for ansible install by pip
 export PATH=$HOME/.local/bin:$PATH
 
-# MANPATH from old .zshrc. Obsolete/outdated now?
-#export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+# For coreutils. Not sure if needed
+export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman":"/opt/homebrew/share/man":$MANPATH
+
+export CERT_LOCATION=~/workspace/bbc_cert.pem
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+#case $TERM in
+#  xterm*)
+#   precmd () { print -Pn "\e]0;%~\a" }
+#   ;;
+#esac
+
+#precmd () { print -Pn "\e]0;%~\a" }
+chpwd () { print -Pn "\e]0;%~\a" }
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
