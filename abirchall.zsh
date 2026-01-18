@@ -1,3 +1,23 @@
+function mdcd() {
+    # create a directory and enter it
+    mkdir -p "$1" && cd "$1"
+}
+
+function up() {
+    # Go up n directories
+    local d=""
+    limit=$1
+    for ((i=1 ; i <= limit ; i++))
+    do
+        d=$d/..
+    done
+    d=$(echo $d | sed 's/^\///')
+    if [ -z "$d" ]; then
+        d=..
+    fi
+    cd $d
+}
+
 # Note: this will run automatically as part of the shell init configuration, no matter which profile is set
 alias glogall='git log --oneline --decorate --graph --all'
 alias gloga="git log -30 --all --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
@@ -60,6 +80,17 @@ fi
 
 #precmd () { print -Pn "\e]0;%~\a" }
 chpwd () { print -Pn "\e]0;%~\a" }
+
+# This gives you better history searching
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+
+# Create an alias for searching history
+alias hg='history | grep'
+
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
