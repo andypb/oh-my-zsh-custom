@@ -19,6 +19,7 @@ function up() {
 }
 
 # Note: this will run automatically as part of the shell init configuration, no matter which profile is set
+
 alias glogall='git log --oneline --decorate --graph --all'
 alias gloga="git log -30 --all --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
 alias glogab="git log -30 --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
@@ -27,7 +28,8 @@ alias glap='git pull --all --prune'
 alias gla='git pull --all'
 alias gstuno='git status -uno'
 alias ls='ls --color'
-alias lla='ls -lha'
+alias lla='ll -a'
+alias lltr='ll -tr'
 alias emacsnw='emacs -nw'
 alias cdp='cd -P'
 # kubectl
