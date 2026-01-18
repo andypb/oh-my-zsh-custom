@@ -1,3 +1,12 @@
+# Note: this will run automatically as part of the shell init configuration, no matter which profile is set
+
+# Set terminal title to current directory name only
+_set_terminal_title() {
+    print -Pn '\e]0;%1~\a'
+}
+precmd_functions+=(_set_terminal_title)
+chpwd_functions+=(_set_terminal_title)
+
 function mdcd() {
     # create a directory and enter it
     mkdir -p "$1" && cd "$1"
@@ -17,8 +26,6 @@ function up() {
     fi
     cd $d
 }
-
-# Note: this will run automatically as part of the shell init configuration, no matter which profile is set
 
 alias glogall='git log --oneline --decorate --graph --all'
 alias gloga="git log -30 --all --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
@@ -74,14 +81,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-#case $TERM in
-#  xterm*)
-#   precmd () { print -Pn "\e]0;%~\a" }
-#   ;;
-#esac
-
-#precmd () { print -Pn "\e]0;%~\a" }
-chpwd () { print -Pn "\e]0;%~\a" }
 
 # This gives you better history searching
 export HISTSIZE=1000000
