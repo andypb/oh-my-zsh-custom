@@ -1,11 +1,15 @@
 # Note: this will run automatically as part of the shell init configuration, no matter which profile is set
 
-# Set terminal title to current directory name only
-_set_terminal_title() {
-    print -Pn '\e]0;%1~\a'
+# Set terminal title to current directory name only (Ghostty only)
+function set_terminal_title() {
+    #[[ "$TERM" == "xterm-ghostty" ]] && print -Pn '\e]0;%1~\a'
+    [[ -n "$GHOSTTY_RESOURCES_DIR" ]] && print -Pn '\e]0;%1~\a'
 }
-precmd_functions+=(_set_terminal_title)
-chpwd_functions+=(_set_terminal_title)
+
+# set title on term startup
+precmd_functions+=(set_terminal_title)
+# set title on change directory
+chpwd_functions+=(set_terminal_title)
 
 function mdcd() {
     # create a directory and enter it
