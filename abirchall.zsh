@@ -71,7 +71,7 @@ alias chownb='/bin/chown'
 
 ## pager
 export PAGER="less"
-export LESS="-FRSMX"
+export LESS="-FRM"
 
 # Added for ansible install by pip
 export PATH=$HOME/.local/bin:$PATH
