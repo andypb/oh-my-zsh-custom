@@ -68,6 +68,11 @@ alias mangnu='man -M /opt/homebrew/share/man'
 alias lsb='/bin/ls --color'
 alias chmodb='/bin/chmod'
 alias chownb='/bin/chown'
+# BBC port forward to cloud sandbox
+alias pfcloudbox="ssh -v -L 5432:$(cut -d'@' -f2 /var/tmp/cloudbox):5432 -AN $(cut -f1 /var/tmp/cloudbox)"
+export CBHOST="$(cut -d'@' -f2 /var/tmp/cloudbox)"
+# Note: could also use $(cat /var/tmp/cloudbox)
+export CBSSH="$(cut -f1 /var/tmp/cloudbox)"
 
 ## pager
 export PAGER="less"
