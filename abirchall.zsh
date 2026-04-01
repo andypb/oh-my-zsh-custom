@@ -31,6 +31,18 @@ function up() {
     cd $d
 }
 
+
+function tunnelcloudbox() {
+    if [ -f /var/tmp/cloudbox ]; then
+        "ssh -v -L 5432:$(cut -d'@' -f2 /var/tmp/cloudbox):5432 -AN $(cut -f1 /var/tmp/cloudbox)"
+        export CBHOST="$(cut -d'@' -f2 /var/tmp/cloudbox)"
+        # Note: could also use $(cat /var/tmp/cloudbox)
+        export CBSSH="$(cut -f1 /var/tmp/cloudbox)"
+    else
+        echo "/var/tmp/cloudbox does not exist, can't set shh port forwarding tunnel and CBHOST & CBSSH envs"
+    fi
+}
+
 alias glogall='git log --oneline --decorate --graph --all'
 alias gloga="git log -30 --all --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
 alias glogab="git log -30 --graph --pretty='format:%C(yellow)%h %C(cyan)%d %Cgreen%ad %C(bold blue)%an: %Creset%Cred%<(70,trunc)%s%Creset' --date=short"
@@ -69,10 +81,7 @@ alias lsb='/bin/ls --color'
 alias chmodb='/bin/chmod'
 alias chownb='/bin/chown'
 # BBC port forward to cloud sandbox
-alias pfcloudbox="ssh -v -L 5432:$(cut -d'@' -f2 /var/tmp/cloudbox):5432 -AN $(cut -f1 /var/tmp/cloudbox)"
-export CBHOST="$(cut -d'@' -f2 /var/tmp/cloudbox)"
-# Note: could also use $(cat /var/tmp/cloudbox)
-export CBSSH="$(cut -f1 /var/tmp/cloudbox)"
+#alias pfcloudbox="ssh -v -L 5432:$(cut -d'@' -f2 /var/tmp/cloudbox):5432 -AN $(cut -f1 /var/tmp/cloudbox)"
 
 ## pager
 export PAGER="less"
